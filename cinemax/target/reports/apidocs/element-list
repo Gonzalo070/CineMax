@@ -1,8 +1,0 @@
-com.cinemax
-com.cinemax.controller
-com.cinemax.model
-com.cinemax.model.enums
-com.cinemax.model.interfaces
-com.cinemax.repository
-com.cinemax.service
-com.cinemax.service.impl
