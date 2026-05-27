@@ -1,14 +1,42 @@
-# CineMax - Entrega Final
+# CineMax
 
-Proyecto Spring Boot + JPA + MySQL/MariaDB para gestion de cine.
+Sistema de gestion de cine desarrollado con Spring Boot, orientado a la administracion de peliculas, funciones, salas, clientes, ventas, compras e insumos.
+
+## Tecnologias
+
+- Java 17
+- Spring Boot 3
+- Spring Web
+- Spring Data JPA / Hibernate
+- MySQL o MariaDB
+- Lombok
+
+## Modulos principales
+
+- Gestion de peliculas, funciones y salas.
+- Gestion de clientes, clientes VIP y empleados.
+- Gestion de ventas, entradas, pagos y compras.
+- Gestion de proveedores e insumos.
+- Autenticacion con registro e inicio de sesion.
 
 ## Requisitos
 
-- Java 17
-- Maven
-- MySQL/MariaDB (recomendado XAMPP en `localhost:3306`)
+- JDK 17
+- Maven 3.9+
+- Base de datos MySQL/MariaDB activa (por defecto `localhost:3306`)
 
-## Ejecutar proyecto
+## Configuracion
+
+La configuracion principal se encuentra en `cinemax/src/main/resources/application.properties`.
+
+Valores por defecto:
+
+- Base de datos: `cineMax`
+- Usuario: `root`
+- Password: vacio
+- Puerto de aplicacion: `8080`
+
+## Ejecucion
 
 Desde la carpeta `cinemax`:
 
@@ -20,47 +48,23 @@ Aplicacion web:
 
 - `http://localhost:8080`
 
-## Generar JavaDoc
+## API REST
 
-Desde la carpeta `cinemax`:
+Base URL:
+
+- `http://localhost:8080/api`
+
+Ejemplos:
+
+- `GET /api/peliculas`
+- `GET /api/clientes`
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+
+## Documentacion JavaDoc
+
+Para generar la documentacion:
 
 ```bash
 mvn clean javadoc:javadoc
 ```
-
-El resultado se genera en:
-
-- `cinemax/target/site/apidocs/index.html`
-
-Opcional (empaquetado + JavaDoc):
-
-```bash
-mvn clean package javadoc:javadoc
-```
-
-## Subir a GitHub (pasos rapidos)
-
-Si todavia no inicializaste repo:
-
-```bash
-git init
-git add .
-git commit -m "feat: proyecto CineMax con auth y JavaDoc"
-git branch -M main
-git remote add origin https://github.com/TU_USUARIO/TU_REPO.git
-git push -u origin main
-```
-
-Si ya existe repo:
-
-```bash
-git add .
-git commit -m "docs: agregar configuracion y guia de JavaDoc"
-git push
-```
-
-## Nota para la entrega
-
-- Verificar que la app inicie sin errores.
-- Adjuntar en GitHub el codigo fuente.
-- Si el profesor pide evidencia de JavaDoc, incluir captura de `target/site/apidocs/index.html` abierto en navegador.
