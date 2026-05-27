@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CineMax - Tu experiencia cinematográfica premium. Descubrí las mejores películas en cartelera y comprá tus entradas online.">
+    <title>CineMax — Cine Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" id="nav-logo">
+                <span class="logo-icon">🎬</span>
+                <span class="logo-text">Cine<span class="logo-accent">Max</span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" class="nav-link active" data-page="home">Cartelera</a></li>
+                <li><a href="#" class="nav-link" data-page="coming-soon">Próximamente</a></li>
+                <li><a href="#" class="nav-link" data-page="promos">Promos</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn-icon" id="theme-toggle" aria-label="Cambiar tema">
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <svg class="sun-icon hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <button class="btn-icon" id="search-toggle" aria-label="Buscar película">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+                <button class="btn-login" id="btn-login-nav">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span>Iniciar Sesión</span>
+                </button>
+                <!-- Shown when logged in -->
+                <div class="user-menu hidden" id="user-menu">
+                    <div class="user-avatar" id="user-avatar">
+                        <span id="user-initial">U</span>
+                    </div>
+                    <span class="user-name" id="user-name-display">Usuario</span>
+                    <button class="btn-icon btn-history" id="btn-history" aria-label="Mis Compras" title="Mis Compras">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </button>
+                    <button class="btn-icon btn-logout" id="btn-logout" aria-label="Cerrar sesión" title="Cerrar sesión">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    </button>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===================== SEARCH OVERLAY ===================== -->
+    <div class="search-overlay hidden" id="search-overlay">
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="search-input" placeholder="Buscar películas..." autocomplete="off">
+                <button class="btn-icon" id="search-close" aria-label="Cerrar búsqueda">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <section class="hero" id="hero-section">
+        <div class="hero-bg" id="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🔥 En cartelera ahora</div>
+            <h1 class="hero-title" id="hero-title">Cargando...</h1>
+            <p class="hero-description" id="hero-description"></p>
+            <div class="hero-meta" id="hero-meta"></div>
+            <div class="hero-actions">
+                <button class="btn-primary btn-lg" id="hero-buy-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 2v20"/><path d="M17 2v20"/><path d="M2 12h20"/><path d="M2 7h5"/><path d="M2 17h5"/><path d="M17 17h5"/><path d="M17 7h5"/></svg>
+                    Comprar Entrada
+                </button>
+                <button class="btn-outline btn-lg" id="hero-details-btn">
+                    Ver Detalles
+                </button>
+            </div>
+        </div>
+        <div class="hero-indicators" id="hero-indicators"></div>
+    </section>
+
+    <!-- ===================== MOVIES GRID ===================== -->
+    <section class="section" id="section-cartelera">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-accent"></span>
+                    Películas en Cartelera
+                </h2>
+                <div class="filter-tabs" id="genre-filters">
+                    <button class="filter-tab active" data-genre="all">Todas</button>
+                    <button class="filter-tab" data-genre="accion">Acción</button>
+                    <button class="filter-tab" data-genre="comedia">Comedia</button>
+                    <button class="filter-tab" data-genre="drama">Drama</button>
+                    <button class="filter-tab" data-genre="terror">Terror</button>
+                    <button class="filter-tab" data-genre="ciencia-ficcion">Sci-Fi</button>
+                </div>
+            </div>
+            <div class="movies-grid" id="movies-grid">
+                <!-- Movies will be injected here by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== COMING SOON SECTION ===================== -->
+    <section class="section hidden" id="section-coming-soon">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-accent"></span>
+                    Próximamente en CineMax
+                </h2>
+            </div>
+            <div class="coming-soon-grid" id="coming-soon-grid">
+                <!-- Coming soon cards injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PROMOS SECTION ===================== -->
+    <section class="section hidden" id="section-promos">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-accent"></span>
+                    Promos y Beneficios
+                </h2>
+                <div class="filter-tabs" id="promo-filters">
+                    <button class="filter-tab active" data-promo-type="all">Todas</button>
+                    <button class="filter-tab" data-promo-type="telecom">📱 Compañías</button>
+                    <button class="filter-tab" data-promo-type="wallet">💳 Billeteras</button>
+                </div>
+            </div>
+            <div class="promos-grid" id="promos-grid">
+                <!-- Promo cards injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PROMO BANNER (Home only) ===================== -->
+    <section class="promo-banner" id="promo-banner-home">
+        <div class="container">
+            <div class="promo-content">
+                <div class="promo-text">
+                    <span class="promo-badge">🍿 Promo Especial</span>
+                    <h2>2x1 en entradas los Miércoles</h2>
+                    <p>Presentá tu tarjeta de socio y disfrutá del mejor cine al mejor precio.</p>
+                </div>
+                <button class="btn-primary btn-lg" id="promo-cta">Ver Todas las Promos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== MOVIE DETAIL MODAL ===================== -->
+    <div class="modal-overlay hidden" id="movie-modal">
+        <div class="modal-content modal-movie">
+            <button class="modal-close" id="modal-close-movie" aria-label="Cerrar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="movie-detail" id="movie-detail">
+                <!-- Detail content injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== LOGIN MODAL ===================== -->
+    <div class="modal-overlay hidden" id="login-modal">
+        <div class="modal-content modal-auth">
+            <button class="modal-close" id="modal-close-login" aria-label="Cerrar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+
+            <!-- Login Form -->
+            <div class="auth-form" id="login-form">
+                <div class="auth-header">
+                    <span class="auth-icon">🎬</span>
+                    <h2>Bienvenido de vuelta</h2>
+                    <p>Iniciá sesión para comprar tus entradas</p>
+                </div>
+                <form id="form-login" novalidate>
+                    <div class="input-group">
+                        <label for="login-email">Email</label>
+                        <div class="input-wrapper">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <input type="email" id="login-email" placeholder="tu@email.com" required>
+                        </div>
+                        <span class="input-error" id="login-email-error"></span>
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">Contraseña</label>
+                        <div class="input-wrapper">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <input type="password" id="login-password" placeholder="••••••••" required>
+                            <button type="button" class="btn-toggle-pass" id="toggle-login-pass" aria-label="Mostrar contraseña">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                        <span class="input-error" id="login-password-error"></span>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full" id="btn-submit-login">
+                        Iniciar Sesión
+                    </button>
+                </form>
+                <div class="auth-footer">
+                    <p>¿No tenés cuenta? <a href="#" id="show-register">Registrate</a></p>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div class="auth-form hidden" id="register-form">
+                <div class="auth-header">
+                    <span class="auth-icon">🎬</span>
+                    <h2>Creá tu cuenta</h2>
+                    <p>Unite a CineMax y disfrutá del mejor cine</p>
+                </div>
+                <form id="form-register" novalidate>
+                    <div class="input-group">
+                        <label for="register-name">Nombre completo</label>
+                        <div class="input-wrapper">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <input type="text" id="register-name" placeholder="Tu nombre" required>
+                        </div>
+                        <span class="input-error" id="register-name-error"></span>
+                    </div>
+                    <div class="input-group">
+                        <label for="register-email">Email</label>
+                        <div class="input-wrapper">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <input type="email" id="register-email" placeholder="tu@email.com" required>
+                        </div>
+                        <span class="input-error" id="register-email-error"></span>
+                    </div>
+                    <div class="input-group">
+                        <label for="register-password">Contraseña</label>
+                        <div class="input-wrapper">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <input type="password" id="register-password" placeholder="Mínimo 6 caracteres" required minlength="6">
+                            <button type="button" class="btn-toggle-pass" id="toggle-register-pass" aria-label="Mostrar contraseña">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                        <span class="input-error" id="register-password-error"></span>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full" id="btn-submit-register">
+                        Crear Cuenta
+                    </button>
+                </form>
+                <div class="auth-footer">
+                    <p>¿Ya tenés cuenta? <a href="#" id="show-login">Iniciá sesión</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== PURCHASE MODAL ===================== -->
+    <div class="modal-overlay hidden" id="purchase-modal">
+        <div class="modal-content modal-purchase">
+            <button class="modal-close" id="modal-close-purchase" aria-label="Cerrar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="purchase-flow" id="purchase-flow">
+                <!-- Step 1: Select Showtime -->
+                <div class="purchase-step active" id="step-showtime">
+                    <h2>Elegí tu función</h2>
+                    <div class="purchase-movie-info" id="purchase-movie-info"></div>
+                    <div class="showtime-dates" id="showtime-dates"></div>
+                    <div class="showtime-list" id="showtime-list"></div>
+                    <button class="btn-primary btn-full" id="btn-next-seats" disabled>Elegir Butacas</button>
+                </div>
+
+                <!-- Step 2: Select Seats -->
+                <div class="purchase-step" id="step-seats">
+                    <h2>Elegí tus butacas</h2>
+                    <div class="screen-label">PANTALLA</div>
+                    <div class="seats-container" id="seats-container"></div>
+                    <div class="seats-legend">
+                        <div class="legend-item"><span class="seat-sample available"></span> Disponible</div>
+                        <div class="legend-item"><span class="seat-sample selected"></span> Seleccionada</div>
+                        <div class="legend-item"><span class="seat-sample occupied"></span> Ocupada</div>
+                    </div>
+                    <div class="selected-seats-info" id="selected-seats-info">
+                        <span id="seats-count">0 butacas seleccionadas</span>
+                        <span id="seats-total">$0</span>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn-outline" id="btn-back-showtime">Volver</button>
+                        <button class="btn-primary" id="btn-next-confirm" disabled>Confirmar</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Confirmation -->
+                <div class="purchase-step" id="step-confirm">
+                    <div class="confirm-success">
+                        <div class="success-icon">🎉</div>
+                        <h2>¡Compra Exitosa!</h2>
+                        <p>Tu entrada fue reservada correctamente</p>
+                        <div class="ticket-card" id="ticket-card"></div>
+                        <button class="btn-primary btn-full" id="btn-close-purchase">Listo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== HISTORY MODAL ===================== -->
+    <div class="modal-overlay hidden" id="history-modal">
+        <div class="modal-content modal-history" style="max-width: 600px;">
+            <button class="modal-close" id="modal-close-history" aria-label="Cerrar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="history-content" style="padding: 2rem;">
+                <h2 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="color: var(--accent-primary);">🎬</span> Mis Compras
+                </h2>
+                <div id="history-list" style="display: flex; flex-direction: column; gap: 1rem; max-height: 400px; overflow-y: auto; padding-right: 0.5rem;">
+                    <!-- History items injected by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== TOAST NOTIFICATIONS ===================== -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <span class="logo-icon">🎬</span>
+                        <span class="logo-text">Cine<span class="logo-accent">Max</span></span>
+                    </a>
+                    <p>Tu experiencia cinematográfica premium. Las mejores películas, la mejor calidad.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#" class="footer-nav-link" data-page="home">Cartelera</a></li>
+                        <li><a href="#" class="footer-nav-link" data-page="coming-soon">Próximamente</a></li>
+                        <li><a href="#" class="footer-nav-link" data-page="promos">Promos</a></li>
+                        <li><a href="#">Sucursales</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Ayuda</h4>
+                    <ul>
+                        <li><a href="#">Preguntas frecuentes</a></li>
+                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="#">Política de privacidad</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Seguinos</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Instagram" class="social-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" aria-label="Twitter" class="social-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Facebook" class="social-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CineMax. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
